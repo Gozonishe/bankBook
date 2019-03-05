@@ -1,0 +1,19 @@
+
+#formItems {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: flex-start;
+}
+
+#formItem {
+	margin: 8px;
+	width: 30vw;
+}
+
+#submitButton {
+	margin: 8px;
+	width: 30vw;
+}
