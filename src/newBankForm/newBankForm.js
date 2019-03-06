@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 import './newBankForm.css';
+import { fs } from 'fs';
 
 export default class NewBankForm extends Component {
-  state = { name: '', email: '', submittedName: '', submittedEmail: '' }
+  state = { name: '', bic: '', number: '', address: '', submittedName: '', submittedBic: '', submittedNumber: '', submittedAddress: ''}
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = () => {
-    const { name, email } = this.state
+    const { name, bic, number, address } = this.state
 
-    this.setState({ submittedName: name, submittedEmail: email })
+    this.setState({ submittedName: name, submittedBic: bic, submittedNumber: number, submittedAddress: address })
+
   }
-  
+
+  componentWillMount(){
+    localStorage.getItem('submittedName') && this.setState({
+      name: JSON.parse(localStorage.getItem('submittedName')),
+      isLoading: false, 
+    })
+  }
+
+  componentDidMount(){
+    if (localStorage.getItem('submittedName')){
+      this.fetchData();
+    } else{
+      console.log('Using data from localStorage')
+    }
+  }
+
+  UNSAFE_componentWillUpdate(nextProps, nextState){
+    localStorage.setItem('name', JSON.stringify(nextState.name))
+  }
   render() {
     const { name, bic, number, address, submittedName, submittedBic, submittedNumber, submittedAddress } = this.state
 
@@ -48,6 +68,11 @@ export default class NewBankForm extends Component {
         <strong>onSubmit:</strong>
         <pre>{JSON.stringify({ submittedName, submittedBic, submittedNumber, submittedAddress }, null, 2)}</pre>
       </div>
+      
     )
+    
+      
+    
+  
   }
 }
