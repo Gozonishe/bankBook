@@ -1,7 +1,8 @@
-.mainPage {
-	text-align: auto;
-}	
-.button {
-  margin:auto;
-  display:block;
+	
+#newBankButton {
+  margin-top:40px;
+  width: 40vw;
+  background-color: rgb(42, 182, 238);
+  color: white;
+  box-shadow: 2px 3px 0px 0px #118bd1;
 }

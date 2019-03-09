@@ -1,40 +1,48 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
+import swal from 'sweetalert';
 import './newBankForm.css';
-import { fs } from 'fs';
 
 export default class NewBankForm extends Component {
-  state = { name: '', bic: '', number: '', address: '', submittedName: '', submittedBic: '', submittedNumber: '', submittedAddress: ''}
+  state = { name: '', 
+            bic: '', 
+            number: '', 
+            address: '', 
+            submittedName: '', 
+            submittedBic: '', 
+            submittedNumber: '', 
+            submittedAddress: '',
+            storageArray: [],
+            id:'',  
+          }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = () => {
-    const { name, bic, number, address } = this.state
+    const { name, bic, number, address, storageArray, id } = this.state
+    this.setState({ submittedName: name, submittedBic: bic, submittedNumber: number, submittedAddress: address, storageArray:storageArray, id:id })
 
-    this.setState({ submittedName: name, submittedBic: bic, submittedNumber: number, submittedAddress: address })
+    let bank = {
+      name: name,
+      bic: bic,
+      number: number,
+      address: address,
+      id: storageArray.length+1,
+    }
 
-  }
+    storageArray.push(bank)
+    let bank_serialized = JSON.stringify(storageArray)
+    localStorage.setItem('myBank', bank_serialized)
 
-  componentWillMount(){
-    localStorage.getItem('submittedName') && this.setState({
-      name: JSON.parse(localStorage.getItem('submittedName')),
-      isLoading: false, 
+    swal({
+      title: "Bank Added!",
+      icon: "success",
+      button: "Ok!",
     })
   }
 
-  componentDidMount(){
-    if (localStorage.getItem('submittedName')){
-      this.fetchData();
-    } else{
-      console.log('Using data from localStorage')
-    }
-  }
-
-  UNSAFE_componentWillUpdate(nextProps, nextState){
-    localStorage.setItem('name', JSON.stringify(nextState.name))
-  }
   render() {
-    const { name, bic, number, address, submittedName, submittedBic, submittedNumber, submittedAddress } = this.state
+    const { name, bic, number, address } = this.state
 
     return (
       <div className='newForm'>
@@ -60,19 +68,11 @@ export default class NewBankForm extends Component {
               name='address'
               value={address}
               onChange={this.handleChange} id='formItem'/>
-            <Form.Button color='green' content='Submit' id='submitButton'/>
+            <Form.Button color='blue' content='Submit' id='submitButton'/>
           </Form.Group>
         </Form>
-        <strong>onChange:</strong>
-        <pre>{JSON.stringify({ name, bic, number, address }, null, 2)}</pre>
-        <strong>onSubmit:</strong>
-        <pre>{JSON.stringify({ submittedName, submittedBic, submittedNumber, submittedAddress }, null, 2)}</pre>
       </div>
       
     )
-    
-      
-    
-  
   }
 }

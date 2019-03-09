@@ -1,0 +1,9 @@
+.bankList {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+    align-items: center;
+    
+    padding: 30px;
+}

@@ -9,7 +9,7 @@ class MainPage extends Component{
         return(
             
             <div className='mainPage'>
-                <Modal trigger={<Button>New Bank</Button>} closeIcon>
+                <Modal trigger={<Button id='newBankButton'>New Bank</Button>} closeIcon>
                     <Modal.Header>Bank Description</Modal.Header>
                     <Modal.Content image>
                         <Image wrapped size='medium' src='../bank.png' />
