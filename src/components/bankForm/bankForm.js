@@ -3,37 +3,16 @@ import { Icon, Divider, Table, Header } from 'semantic-ui-react';
 import './bankForm.css';
 
 class BankForm extends Component {
-    constructor(props){
-        super(props);
-    }
-
-    // handleAddToCart = () => {
-    //     console.log('');
-    //     const {name, price, _id, image, info, addToCart} = this.props;
-    //     const itemInfo = {
-    //         name,
-    //         price,
-    //         _id,
-    //         image,
-    //         info,
-    //     };
-    //     swal({
-    //         title: "Item Added!",
-    //         icon: "success",
-    //         button: "Ok!",
-    //       });
-    //     addToCart(itemInfo);
-    // }
 
     render() {
-        const {name, bic, id, number, address} = this.props;    
+        const {name, bic, _id, number, address} = this.props;    
         return (              
             <div id='bankCard'>  
-                <React.Fragment id='bankForm'>
+                <React.Fragment>
                     <Divider horizontal>
                     <Header as='h4'>
                         <Icon name='home' />
-                        Client № {id}
+                        Client № {_id}
                     </Header>
                     </Divider>
 

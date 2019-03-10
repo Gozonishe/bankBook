@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import './App.css';
-import MainPage from './mainPage/mainPage';
-import NewBankForm from './newBankForm/newBankForm';
+import MainPage from './components/mainPage/mainPage';
+import NewBankForm from './components/newBankForm/newBankForm';
 
 class App extends Component {
   render() {
