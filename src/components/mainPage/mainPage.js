@@ -5,18 +5,20 @@ import NewBankForm from '../newBankForm/newBankForm';
 import BankList from '../bankList/bankList';
 import BankFilter from '../bankFilter/bankFilter';
 import swal from 'sweetalert';
+import { getLocalStorageData } from '../../helpers/localStorageUtils/getData';
+import BankForm from '../bankForm/bankForm';
+import { updateLocalStorageDataByName } from '../../helpers/localStorageUtils/updateData';
 
 class MainPage extends Component{
-
     constructor(props) {
         super(props)
         this.state = {
             filterText: '',
-            bank_deserizlized : JSON.parse(localStorage.getItem('myBank')),
+            isBankAdded: false,
         }
     }
 
-    filterUpdate(value) {
+    filterUpdate = value => {
         this.setState({
             filterText: value
         })
@@ -33,9 +35,34 @@ class MainPage extends Component{
           })
     }
 
-    render(){
+    getBankList() {
+        return getLocalStorageData('myBank')
+        .filter(bank => 
+            bank.name.indexOf(this.state.filterText) !== -1 || bank.bic.indexOf(this.state.filterText) !== -1)
+        .map((bank, idx) => (
+          <BankForm key={bank.name}
+            name={bank.name} 
+            bic={bank.bic} 
+            number={bank.number} 
+            address={bank.address}
+            _id={idx + 1}                                       
+          />
+        ))
+      }
 
-        console.log(this.state.filterText)
+    onBankAddCallback = isBankAdded => {
+        this.setState({isBankAdded})
+    }
+
+    render(){
+        // todo: remove me pls. bind to button in near future =D 
+        // const newItemData = {
+        //     address: "NEW_xxx1",
+        //     bic: "NEW_xxx2",
+        //     name: "NEW_xxx3",
+        //     number: "NEW_xxx4",
+        // }
+        // updateLocalStorageDataByName('xxx', newItemData, 'myBank')
 
         return(        
             <div className='mainPage'>  
@@ -44,17 +71,25 @@ class MainPage extends Component{
                     <Modal.Content image>
                         <Image wrapped size='medium' src='../bank.png' />
                         <Modal.Description>
-                            <NewBankForm/>
+                            <NewBankForm onBankAddCallback={this.onBankAddCallback}/>
                         </Modal.Description>
                     </Modal.Content>
                 </Modal>
                 <br/>
                 <br/>
                 <BankFilter filterText={this.state.filterText}
-                            filterUpdate={this.filterUpdate.bind(this)}/>
+                            filterUpdate={this.filterUpdate}/>
                 <Button id='clearStorageButton' onClick={this.clearLocalStorage}>Clear Bank Base</Button>
                 <main>
-                    <BankList bank_deserizlized={this.props.bank_deserizlized}/>
+                    <div> 
+                        {
+                        getLocalStorageData('myBank') === null ? <div><h1>Bank List is empty</h1></div> :
+                        <div className='bankList'>
+                            {this.getBankList()}
+                        </div>
+                        }
+                    </div>
+                    {/* <BankList /> */}
                 </main>
             </div>
         ) 

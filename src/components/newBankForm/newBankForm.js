@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import './newBankForm.css';
+import { setLocalStorageData } from '../../helpers/localStorageUtils/setData';
+
+
 
 export default class NewBankForm extends Component {
   state = {
@@ -13,37 +16,25 @@ export default class NewBankForm extends Component {
     submittedBic: '',
     submittedNumber: '',
     submittedAddress: '',
-    storageArray: [],
-    _id: '',
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = () => {
-    const { name, bic, number, address, _id, storageArray } = this.state
-    // this.setState({
-    //   submittedName: name,
-    //   submittedBic: bic,
-    //   submittedNumber: number,
-    //   submittedAddress: address,
-    //   storageArray: storageArray,
-    //   _id: _id,
-    // })
+    const { name, bic, number, address } = this.state
 
     let bank = {
       name,
       bic,
       number,
       address,
-      _id: newStorage === undefined? 1 : newStorage.length + 1,
     }
 
-    console.log(newStorage)
-
-    const storageData = JSON.parse(localStorage.getItem('myBank'))
-    const newStorage = storageData === null ? [] : storageData.slice() 
-    newStorage.push(bank)
-    localStorage.setItem('myBank', JSON.stringify(newStorage))
+    setLocalStorageData(bank, 'myBank')
+    // const storageData = getData('myBank')
+    // const newStorage = storageData === null ? [] : storageData.slice() 
+    // newStorage.push(bank)
+    // localStorage.setItem('myBank', JSON.stringify(newStorage))
 
     //storageArray.push(bank)
     // const res = [...storageData, bank]
@@ -57,8 +48,12 @@ export default class NewBankForm extends Component {
       title: "Bank Added!",
       icon: "success",
       button: "Ok!",
-    }).then (isConfirm => {
-      window.location.reload()
+    })
+    .then (isConfirm => {
+      if (isConfirm) {
+        this.props.onBankAddCallback(true)
+        // need to close pop-up window here
+      }
     })
   }
 

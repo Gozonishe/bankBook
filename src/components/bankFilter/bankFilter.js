@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Search } from 'semantic-ui-react';
 import './bankFilter.css';
 
 class BankFilter extends Component {
@@ -12,14 +11,12 @@ class BankFilter extends Component {
     render() {
         return (
             <div className='bankFilter'>
-            {/* <Search/> */}
-
             <header>
                 <form>
                     <input
                         type='text'
                         ref={ (value) => this.myValue = value}
-                        placeholder='Bank Filter'
+                        placeholder='Filter by Bank Name/BIC'
                         onChange={this.filterUpdate.bind(this)}
                         />
                 </form>
