@@ -10,7 +10,7 @@ class BankFilter extends Component {
 
     render() {
         return (
-            <div className='bankFilter'>
+            <div id='bankFilter'>
             <header>
                 <form>
                     <input

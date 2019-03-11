@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {Button, Image, Modal} from 'semantic-ui-react';
 import './mainPage.css';
 import NewBankForm from '../newBankForm/newBankForm';
-import BankList from '../bankList/bankList';
 import BankFilter from '../bankFilter/bankFilter';
 import swal from 'sweetalert';
 import { getLocalStorageData } from '../../helpers/localStorageUtils/getData';
 import BankForm from '../bankForm/bankForm';
 import { updateLocalStorageDataByName } from '../../helpers/localStorageUtils/updateData';
+import { delLocalStorageData } from '../../helpers/localStorageUtils/delData';
 
 class MainPage extends Component{
     constructor(props) {
@@ -15,10 +15,11 @@ class MainPage extends Component{
         this.state = {
             filterText: '',
             isBankAdded: false,
+            removedBank: '',
         }
     }
 
-    filterUpdate = value => {
+    filterUpdate = (value) => {
         this.setState({
             filterText: value
         })
@@ -45,13 +46,18 @@ class MainPage extends Component{
             bic={bank.bic} 
             number={bank.number} 
             address={bank.address}
-            _id={idx + 1}                                       
+            _id={idx + 1}           
+            onBankRemoveCallback={this.onBankRemoveCallback}                            
           />
         ))
       }
 
     onBankAddCallback = isBankAdded => {
         this.setState({isBankAdded})
+    }
+
+    onBankRemoveCallback = bankName => {
+        this.setState({removedBank: bankName})
     }
 
     render(){
@@ -79,6 +85,7 @@ class MainPage extends Component{
                 <br/>
                 <BankFilter filterText={this.state.filterText}
                             filterUpdate={this.filterUpdate}/>
+                            
                 <Button id='clearStorageButton' onClick={this.clearLocalStorage}>Clear Bank Base</Button>
                 <main>
                     <div> 

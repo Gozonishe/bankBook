@@ -4,8 +4,6 @@ import swal from 'sweetalert';
 import './newBankForm.css';
 import { setLocalStorageData } from '../../helpers/localStorageUtils/setData';
 
-
-
 export default class NewBankForm extends Component {
   state = {
     name: '',
@@ -31,18 +29,6 @@ export default class NewBankForm extends Component {
     }
 
     setLocalStorageData(bank, 'myBank')
-    // const storageData = getData('myBank')
-    // const newStorage = storageData === null ? [] : storageData.slice() 
-    // newStorage.push(bank)
-    // localStorage.setItem('myBank', JSON.stringify(newStorage))
-
-    //storageArray.push(bank)
-    // const res = [...storageData, bank]
-    // console.log(res);
-    
-    //let bank_serialized = JSON.stringify(storageArray)
-    //localStorage.setItem('myBank', bank_serialized)
-
     //popup confirm
     swal({
       title: "Bank Added!",
@@ -52,7 +38,6 @@ export default class NewBankForm extends Component {
     .then (isConfirm => {
       if (isConfirm) {
         this.props.onBankAddCallback(true)
-        // need to close pop-up window here
       }
     })
   }
