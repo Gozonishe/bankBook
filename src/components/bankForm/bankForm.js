@@ -3,6 +3,8 @@ import { Icon, Divider, Table, Header } from 'semantic-ui-react';
 import { delLocalStorageData } from '../../helpers/localStorageUtils/delData';
 import './bankForm.css';
 import { getLocalStorageData } from '../../helpers/localStorageUtils/getData';
+import NewBankForm from '../newBankForm/newBankForm';
+import {Button, Image, Modal} from 'semantic-ui-react';
 
 class BankForm extends Component {
 
@@ -44,7 +46,15 @@ class BankForm extends Component {
                     
                     </Table>
                     <div id='funcButtons'>
-                        <button id='editButton'>Edit Client</button>
+                        <Modal trigger={<Button id='editButton'>Edit Client</Button>} closeIcon>
+                            <Modal.Header>Bank Description</Modal.Header>
+                                <Modal.Content image>
+                                    <Image wrapped size='medium' src='../bank.png' />
+                                    <Modal.Description>
+                                        <NewBankForm onBankChangeCallback={this.onBankChangeCallback}/>
+                                    </Modal.Description>
+                                </Modal.Content>
+                        </Modal>
                         <button id='delButton' onClick={event => this.removeItemHandler(event, name)}>Delete Client</button>
                     </div>
                 </React.Fragment>
