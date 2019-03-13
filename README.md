@@ -1,7 +1,8 @@
 Bank HandBook Project
 
 Build with React JS 
-All info save in locastorage
+
+All info save in localstorage
 ____________________________
 
 ## Available Scripts
