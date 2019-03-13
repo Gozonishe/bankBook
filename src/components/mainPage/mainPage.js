@@ -6,8 +6,6 @@ import BankFilter from '../bankFilter/bankFilter';
 import swal from 'sweetalert';
 import { getLocalStorageData } from '../../helpers/localStorageUtils/getData';
 import BankForm from '../bankForm/bankForm';
-import { updateLocalStorageDataByName } from '../../helpers/localStorageUtils/updateData';
-import { delLocalStorageData } from '../../helpers/localStorageUtils/delData';
 
 class MainPage extends Component{
     constructor(props) {
@@ -16,6 +14,7 @@ class MainPage extends Component{
             filterText: '',
             isBankAdded: false,
             removedBank: '',
+            changedBank: '',
         }
     }
 
@@ -32,7 +31,7 @@ class MainPage extends Component{
             icon: "warning",
             button: "Ok!",
           }).then (isConfirm => {
-            window.location.reload()
+            this.onBankChangeCallback('Bank Base Cleared!')
           })
     }
 
@@ -48,6 +47,7 @@ class MainPage extends Component{
             address={bank.address}
             _id={idx + 1}           
             onBankRemoveCallback={this.onBankRemoveCallback}                            
+            onBankChangeCallback={this.onBankChangeCallback}                            
           />
         ))
       }
@@ -59,44 +59,37 @@ class MainPage extends Component{
     onBankRemoveCallback = bankName => {
         this.setState({removedBank: bankName})
     }
+    onBankChangeCallback = bankName => {
+        this.setState({changedBank: bankName})
+    }
 
     render(){
-        // todo: remove me pls. bind to button in near future =D 
-        // const newItemData = {
-        //     address: "NEW_xxx1",
-        //     bic: "NEW_xxx2",
-        //     name: "NEW_xxx3",
-        //     number: "NEW_xxx4",
-        // }
-        // updateLocalStorageDataByName('xxx', newItemData, 'myBank')
-
         return(        
-            <div className='mainPage'>  
-                <Modal trigger={<Button id='newBankButton'>New Bank</Button>} closeIcon>
-                    <Modal.Header>Bank Description</Modal.Header>
-                    <Modal.Content image>
-                        <Image wrapped size='medium' src='../bank.png' />
-                        <Modal.Description>
-                            <NewBankForm onBankAddCallback={this.onBankAddCallback}/>
-                        </Modal.Description>
-                    </Modal.Content>
-                </Modal>
-                <br/>
-                <br/>
-                <BankFilter filterText={this.state.filterText}
-                            filterUpdate={this.filterUpdate}/>
-                            
-                <Button id='clearStorageButton' onClick={this.clearLocalStorage}>Clear Bank Base</Button>
+            <div className='mainPage'>
+                <header>
+                    <Modal trigger={<Button id='newBankButton'>New Bank</Button>} closeIcon>
+                        <Modal.Header>Bank Description</Modal.Header>
+                        <Modal.Content image>
+                            <Image wrapped size='medium' src='../bank.png' />
+                            <Modal.Description>
+                                <NewBankForm onBankAddCallback={this.onBankAddCallback}/>
+                            </Modal.Description>
+                        </Modal.Content>
+                    </Modal>
+                    <br/>    
+                    <BankFilter filterText={this.state.filterText}
+                                filterUpdate={this.filterUpdate}/>
+                    <Button id='clearStorageButton' onClick={this.clearLocalStorage}>Clear Bank Base</Button>
+                </header>  
                 <main>
                     <div> 
                         {
-                        getLocalStorageData('myBank') === null ? <div><h1>Bank List is empty</h1></div> :
+                        getLocalStorageData('myBank') === null ? <div><h1>Bank List is empty...</h1></div> :
                         <div className='bankList'>
                             {this.getBankList()}
                         </div>
                         }
                     </div>
-                    {/* <BankList /> */}
                 </main>
             </div>
         ) 

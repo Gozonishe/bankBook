@@ -8,28 +8,23 @@
 #funcButtons {
     margin-top: 2px;
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
+
 }
 
 #delButton {
-
     width: 15vw;
     height: 36px;
     background-color: rgb(192, 99, 99);
     color: white;
-
-
     border-radius: 10px;
 }
 
 #editButton {
-
     width: 15vw;
     height: 36px;
     background-color: rgb(130, 132, 133);
     color: white;
-
-
     border-radius: 10px;
 }
 

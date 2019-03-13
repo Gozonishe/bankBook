@@ -11,16 +11,12 @@ class BankFilter extends Component {
     render() {
         return (
             <div id='bankFilter'>
-            <header>
-                <form>
-                    <input
-                        type='text'
-                        ref={ (value) => this.myValue = value}
-                        placeholder='Filter by Bank Name/BIC'
-                        onChange={this.filterUpdate.bind(this)}
-                        />
-                </form>
-            </header>
+                <input 
+                    type='text'
+                    ref={ (value) => this.myValue = value}
+                    placeholder='Filter by Bank Name/BIC'
+                    onChange={this.filterUpdate.bind(this)}
+                    />
             </div>
         )
     }

@@ -5,4 +5,4 @@ export function setLocalStorageData(data, itemName) {
     const newStorage = storageData === null ? [] : storageData.slice() 
     newStorage.push(data)
     localStorage.setItem(itemName, JSON.stringify(newStorage))
-}
+} 

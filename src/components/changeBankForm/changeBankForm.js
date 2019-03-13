@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import './newBankForm.css';
-import { setLocalStorageData } from '../../helpers/localStorageUtils/setData';
+import './changeBankForm.css';
+import { updateLocalStorageDataByName } from '../../helpers/localStorageUtils/updateData';
 
-export default class NewBankForm extends Component {
+export default class ChangeBankForm extends Component {
   state = {
     name: '',
     bic: '',
@@ -21,32 +21,32 @@ export default class NewBankForm extends Component {
   handleSubmit = () => {
     const { name, bic, number, address } = this.state
 
-    let bank = {
+    const bank = {
       name,
       bic,
       number,
       address,
     }
 
-    setLocalStorageData(bank, 'myBank')
+    updateLocalStorageDataByName(this.props.updatedBankName, bank, 'myBank')
+  
     //popup confirm
     swal({
-      title: "Bank Added!",
+      title: "Bank Info Edited!",
       icon: "success",
       button: "Ok!",
     })
     .then (isConfirm => {
       if (isConfirm) {
-        this.props.onBankAddCallback(true)
+        this.props.onBankChangeCallback(true, bank)
       }
     })
   }
 
   render() {
     const { name, bic, number, address } = this.state
-
     return (
-      <div  className='newForm'>
+      <div  className='changeForm'>
         <Form onSubmit={this.handleSubmit} >
           <Form.Group id='formItems'>
             <Form.Input 
@@ -69,7 +69,7 @@ export default class NewBankForm extends Component {
               name='address'
               value={address}
               onChange={this.handleChange} id='formItem'/>
-            <Form.Button color='blue' content='Submit' id='submitButton'/>
+            <Form.Button color='blue' content='Submit Changes' id='submitButton'/>
           </Form.Group>
         </Form>
       </div>
