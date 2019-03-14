@@ -1,12 +1,13 @@
 .App {
   text-align: center;
   background: url("http://get.signpost.com/rs/848-IXX-999/images/2015ipad-bg.jpg");
-  min-height: 100vh;
+  min-height: 101vh;
+}
+
+.appContent {
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
 }
-
 
 

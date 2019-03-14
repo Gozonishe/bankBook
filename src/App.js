@@ -9,9 +9,11 @@ class App extends Component {
   render() {
     return ( 
     <Router>
-      <div className="App">
+      <div className="App" >
+        <span className='appContent'>
             <Route exact path='/' component={MainPage} />
             <Route path='/new_bank_form' component={NewBankForm} />
+        </span>    
       </div>
     </Router>
     );
