@@ -9,10 +9,22 @@
 
 #formItem {
 	margin: 8px;
-	width: 30vw;
+	width: 300px;
 }
 
 #submitButton {
 	margin: 8px;
-	width: 30vw;
+	width: 500px;
+}
+
+@media (max-width:768px) {
+	#formItem {
+		margin: 8px;
+		width: 300px;
+	}
+	
+	#submitButton {
+		margin: 8px;
+		width: 360px;
+	}
 }

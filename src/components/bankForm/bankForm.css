@@ -1,7 +1,7 @@
 #bankCard {
     display: flex;
     flex-direction: column;
-    width: 40vw;
+    width: 660px;
     margin-top: 40px;
 }
 
@@ -13,7 +13,7 @@
 }
 
 #delButton {
-    width: 15vw;
+    width: 240px;
     height: 36px;
     background-color: rgb(192, 99, 99);
     color: white;
@@ -21,10 +21,16 @@
 }
 
 #editButton {
-    width: 15vw;
+    width: 240px;
     height: 36px;
     background-color: rgb(130, 132, 133);
     color: white;
     border-radius: 10px;
 }
 
+@media (max-width:768px) {
+    #bankCard {
+        width: 320px;
+        margin-top: 10px;
+    }
+}

@@ -64,7 +64,7 @@ export default class NewBankForm extends Component {
               onChange={this.handleChange} 
               required
               title='AAAA-AA-AA-AAA'
-              pattern='([A-Z]{4})[-]{1}([A-Z]{2})[-]{1}([0-9A-Z]{2})[-]{1}([0-9A-Z]{3})' id='bicForm'/>
+              pattern='([A-Z]{4})[-]{1}([A-Z]{2})[-]{1}([0-9A-Z]{2})[-]{1}([0-9A-Z]{3})' id='formItem'/>
             <Form.Input 
               placeholder='Account number' 
               name='number' 

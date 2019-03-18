@@ -11,7 +11,25 @@ input {
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
     color: rgba(0,0,0,1);
     background: rgba(252,252,252,1);
-    width: 19vw;
+    width: 380px;
     height: 20px;
     box-shadow: 2px 3px 0px 0px #918787;
 }
+
+@media (max-width:768px) {
+    input {
+        box-sizing: content-box;
+        margin-top: 8px;
+        padding-top: 10px;
+        border: 1px solid #b7b7b7;
+        border-radius: 30px;
+        font: 14px;
+        font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+        color: rgba(0,0,0,1);
+        background: rgba(252,252,252,1);
+        width: 168px;
+        height: 20px;
+        box-shadow: 2px 3px 0px 0px #918787;
+        
+    }
+} 

@@ -9,16 +9,10 @@
 
 #formItem {
 	margin: 8px;
-	width: 30vw;
+	width: 300px;
 }
 
 #submitButton {
 	margin: 8px;
-	width: 30vw;
+	width: 500px;
 }
-
-#bicForm {
-	margin: 8px;
-	width: 30vw;
-}
-
