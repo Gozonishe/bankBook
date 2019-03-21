@@ -52,22 +52,29 @@ export default class ChangeBankForm extends Component {
             <Form.Input 
               placeholder='Name' 
               name='name' 
-              value={name} 
+              value={name}
+              required 
               onChange={this.handleChange} id='formItem'/> 
             <Form.Input 
               placeholder='BIC' 
               name='bic' 
-              value={bic} 
+              value={bic}
+              required
+              title='AAAA-AA-AA-AAA'
+              pattern='([A-Z]{4})[-]{1}([A-Z]{2})[-]{1}([0-9A-Z]{2})[-]{1}([0-9A-Z]{3})' 
               onChange={this.handleChange} id='formItem'/>
             <Form.Input 
               placeholder='Account number' 
               name='number' 
-              value={number} 
+              value={number}
+              required
+              maxlength='12' 
               onChange={this.handleChange} id='formItem'/>
             <Form.Input
               placeholder='Address'
               name='address'
               value={address}
+              required
               onChange={this.handleChange} id='formItem'/>
             <Form.Button color='blue' content='Submit Changes' id='submitButton'/>
           </Form.Group>

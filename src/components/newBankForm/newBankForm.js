@@ -42,11 +42,8 @@ export default class NewBankForm extends Component {
     })
   }
 
-  
-
   render() {
     const { name, bic, number, address } = this.state
-    
     return (
       <div  className='newForm'>
         <Form onSubmit={this.handleSubmit} >
@@ -67,8 +64,8 @@ export default class NewBankForm extends Component {
               pattern='([A-Z]{4})[-]{1}([A-Z]{2})[-]{1}([0-9A-Z]{2})[-]{1}([0-9A-Z]{3})' id='formItem'/>
             <Form.Input 
               placeholder='Account number' 
-              name='number' 
-              type='number'
+              name='number'
+              maxlength='12' 
               value={number} 
               onChange={this.handleChange} 
               required id='formItem'/>
