@@ -61,6 +61,8 @@ export default class ChangeBankForm extends Component {
               value={bic}
               required
               title='AAAA-AA-AA-AAA'
+              type='text'
+              maxLength='14' 
               pattern='([A-Z]{4})[-]{1}([A-Z]{2})[-]{1}([0-9A-Z]{2})[-]{1}([0-9A-Z]{3})' 
               onChange={this.handleChange} id='formItem'/>
             <Form.Input 
@@ -68,7 +70,8 @@ export default class ChangeBankForm extends Component {
               name='number' 
               value={number}
               required
-              maxlength='12' 
+              type='text'
+              maxLength='12' 
               onChange={this.handleChange} id='formItem'/>
             <Form.Input
               placeholder='Address'

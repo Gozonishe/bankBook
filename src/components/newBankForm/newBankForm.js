@@ -59,13 +59,16 @@ export default class NewBankForm extends Component {
               name='bic'
               value={bic} 
               onChange={this.handleChange} 
+              type='text'
+              maxLength='14' 
               required
               title='AAAA-AA-AA-AAA'
               pattern='([A-Z]{4})[-]{1}([A-Z]{2})[-]{1}([0-9A-Z]{2})[-]{1}([0-9A-Z]{3})' id='formItem'/>
             <Form.Input 
               placeholder='Account number' 
               name='number'
-              maxlength='12' 
+              type='text'
+              maxLength='12' 
               value={number} 
               onChange={this.handleChange} 
               required id='formItem'/>
