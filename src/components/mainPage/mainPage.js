@@ -38,7 +38,7 @@ class MainPage extends Component{
     getBankList() {
         return getLocalStorageData('myBank')
         .filter(bank => 
-            bank.name.indexOf(this.state.filterText) !== -1 || bank.bic.indexOf(this.state.filterText) !== -1)
+            bank.name.toLowerCase().indexOf(this.state.filterText) !== -1 || bank.bic.indexOf(this.state.filterText) !== -1)
         .map((bank, idx) => (
           <BankForm key={bank.name}
             name={bank.name} 
